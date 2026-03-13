@@ -13,6 +13,7 @@ var attacking: bool = false
 @onready var walk = $"../Walk"
 @onready var idle = $"../Idle"
 
+@onready var hurt_box: HurtBox = %AttackHurtBox
 
 ## 玩家进入这个状态会触发什么
 func Enter() -> void:
@@ -25,12 +26,17 @@ func Enter() -> void:
 	audio.play()
 	
 	attacking = true
+	
+	# 攻击延迟下，效果更好
+	await get_tree().create_timer(0.075).timeout
+	hurt_box.monitoring = true
 	pass
 
 ## 玩家离开这个状态会触发什么
 func Exit() -> void:
 	animation_player.animation_finished.disconnect(EndAttack)
 	attacking = false
+	hurt_box.monitoring = false
 	pass
 
 
