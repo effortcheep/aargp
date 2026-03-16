@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://iar51nhmlqjd" path="res://Enemise/Scripts/enemy.gd" id="1_3ujgu"]
 [ext_resource type="Texture2D" uid="uid://cqpkxpf5cmaik" path="res://Enemise/Slime/Slime.png" id="1_73yqg"]
 [ext_resource type="Texture2D" uid="uid://b8bduxd7punv5" path="res://Player/Sprites/Shadow.png" id="1_111wj"]
+[ext_resource type="Script" uid="uid://c4wn4b4p6vuvp" path="res://Enemise/Scripts/enemy_state_machine.gd" id="4_5mjye"]
+[ext_resource type="Script" uid="uid://dbam62gd0t43b" path="res://Enemise/Scripts/states/enemy_state_idle.gd" id="5_ra3tw"]
+[ext_resource type="Script" uid="uid://c0hxyv2mrbi5c" path="res://Enemise/Scripts/states/enemy_state_wander.gd" id="6_u64pa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_111wj"]
 radius = 5.0
@@ -244,3 +247,15 @@ shape = SubResource("CapsuleShape2D_111wj")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2114910640]
 libraries/ = SubResource("AnimationLibrary_5mjye")
 autoplay = &"idle_down"
+
+[node name="EnemyStateMachine" type="Node" parent="." unique_id=751653115]
+script = ExtResource("4_5mjye")
+
+[node name="Idle" type="Node" parent="EnemyStateMachine" unique_id=700183274 node_paths=PackedStringArray("after_idle_state")]
+script = ExtResource("5_ra3tw")
+after_idle_state = NodePath("../Wander")
+
+[node name="Wander" type="Node2D" parent="EnemyStateMachine" unique_id=455112108 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_u64pa")
+wander_speed = 30.0
+next_state = NodePath("../Idle")
