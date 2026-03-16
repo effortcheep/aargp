@@ -737,6 +737,7 @@ debug_color = Color(0.70413834, 0.4893573, 0.061947167, 0.41960785)
 [node name="HitBox" parent="." unique_id=1349909980 instance=ExtResource("3_g5r6i")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1399366308]
+position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_nf88o")
 debug_color = Color(0.70413834, 0.4893573, 0.061947167, 0.41960785)
 

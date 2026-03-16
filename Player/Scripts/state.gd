@@ -1,11 +1,14 @@
 class_name State extends Node
 
 static var player: Player
+static var state_machine: PlayerStateMachine
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
+func init() -> void:
+	pass
 
 ## 玩家进入这个状态会触发什么
 func Enter() -> void:
